@@ -1,0 +1,114 @@
+var x=[
+ {
+  "Name": "kushal",
+  "Bookid": "B010",
+  "Bookauthor": "schaller",
+  "publicationyear": 1996,
+  "genre": ["phisophy","mystery"],
+  "noofcopies": 3,
+  "review": "excellent"
+ },
+ {
+  "Name": "kumar",
+  "Bookid": "B011",
+  "Bookauthor": "Barry",
+  "publicationyear": 2000,
+  "genre": ["fantasy"],
+  "noofcopies": 8,
+  "review": "good"
+ },
+ {
+  "Name": "raj",
+  "Bookid": "B012",
+  "Bookauthor": "pranav",
+  "publicationyear": 2001,
+  "genre": ["thriller"],
+  "noofcopies": 6,
+  "review": "average"
+ },
+ {
+  "Name": "rajesh",
+  "Bookid": "B013",
+  "Bookauthor": "helter",
+  "publicationyear": 2010,
+  "genre": ["horror","mystery"],
+  "noofcopies": 2,
+  "review": "average"
+ },
+ {
+  "Name": "ram",
+  "Bookid": "B014",
+  "Bookauthor": "yardhi",
+  "publicationyear": 2002,
+  "genre": ["thriller","mystery"],
+  "noofcopies": 1,
+  "review": "bad"
+ },
+ {
+  "Name": "peter",
+  "Bookid": "B015",
+  "Bookauthor": "john",
+  "publicationyear": 1999,
+  "genre": ["romantic","mystery"],
+  "noofcopies": 9,
+  "review": "average"
+ },
+ {
+  "Name": "john",
+  "Bookid": "B016",
+  "Bookauthor": "raheme",
+  "publicationyear": 2000,
+  "genre": ["mystery"],
+  "noofcopies": 2,
+  "review": "good"
+ }
+]
+db.books.insertMany(x);
+
+
+
+
+
+create table info(Product string, Price int, Payment_Type string, Name
+string,City string);
+
+
+create table info(Product string, Price int, Payment_Type 
+string, Name string,City string)
+> row format delimited
+> fields terminated by ",";
+
+
+load data local inpath '/home/hadoop/Desktop/sales.csv' into 
+table info;
+
+select Country ,count(*) as salescount
+> from info
+> group by Country;
+
+select State,count(*) as salescount
+> from info
+> group by State;
+
+select Product,collect_set(Name) as Names
+> from info
+> group by Product;
+
+CREATE VIEW visa_transaction1 AS
+> SELECT *
+> FROM info
+> WHERE Payment_Type = 'Visa';
+
+select * from info
+> where City='Seattle';
+
+SELECT MAX(transaction_id) AS max_transactions
+FROM info
+WHERE state = 'Ontario';
+
+select count(*) as transactioncount
+> from info
+> where Price>=1500 AND Price <=3600;
+
+select * from info
+> where Country='United States' and Payment_Type='Mastercard';
